@@ -52,11 +52,11 @@ class Digito extends HTMLElement {
         }
     }
     renderNumero(){
-        Array.from(this._contenedorDigito.children).forEach((element) => {
-            element.classList.add('white');
+        Array?.from(this._contenedorDigito.children).forEach((child) => {
+            child.classList.add('white');
         });
         numeros.get(this.numero).forEach((identificador)=>{
-            this._contenedorDigito.querySelector(`#${identificador}`).classList.remove('white');
+            this._contenedorDigito.querySelector('#' + identificador).classList.remove('white');
         });
 
 

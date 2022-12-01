@@ -23,9 +23,9 @@ class Digito extends HTMLElement {
     }
     connectedCallback(){
         this.numero = 0;
-        setInterval(()=>{
-            this.avanzar(this.numero);
-        },100);
+        // setInterval(()=>{
+        //     this.avanzar(this.numero);
+        // },100);
     }
     get numero(){
       return  parseFloat(this.getAttribute('numero')) ;

@@ -17,13 +17,13 @@ class ContenedorDigitos extends HTMLElement{
         let tiempo = this.formatearTiempo(this.contador);
 
         this.querySelector('#decenasHoras').numero = Math.floor(tiempo.horas / 10);
-        this.querySelector('#horas').numero = Math.floor(tiempo.horas);
+        this.querySelector('#horas').numero = Math.floor(tiempo.horas  % 10);
 
         this.querySelector('#decenasMinutos').numero = Math.floor(tiempo.minutos / 10);
-        this.querySelector('#minutos').numero = Math.floor(tiempo.minutos);
+        this.querySelector('#minutos').numero = Math.floor(tiempo.minutos  % 10);
 
         this.querySelector('#decenasSegundos').numero = Math.floor(tiempo.segundos / 10);
-        this.querySelector('#segundos').numero = Math.floor(tiempo.segundos);
+        this.querySelector('#segundos').numero = Math.floor(tiempo.segundos % 10);
 
         this.querySelector('#decenasCentesimas').numero = tiempo.decimas;
         this.querySelector('#centesimas').numero = tiempo.centesimas;

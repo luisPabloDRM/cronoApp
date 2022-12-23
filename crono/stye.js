@@ -12,3 +12,4 @@ const style = `
 	justify-content: space-around;
 }
 `
+export default style;

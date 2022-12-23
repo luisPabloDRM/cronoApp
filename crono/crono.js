@@ -17,8 +17,58 @@ class Crono extends HTMLElement {
         shadowRoot.appendChild(slot);
         contenedorBotones.appendChild(this.botonIniciarPausar);
         contenedorBotones.appendChild(this.botonReiniciar);
+        shadowRoot.appendChild(contenedorBotones);
+
+        this.contador = 0;
+
+        this.iniciarPausarClick = this.iniciarPausarClick.bind(this)
+        this.reiniciarClick = this.reiniciarClick.bind(this)
 
     }
+    connectedCallback() {
+        this.botonIniciarPausar.titulo = 'Iniciar'
+        this.botonReiniciar.titulo = 'Reiniciar'
+
+        this.botonIniciarPausar.addEventListener('customClick', this.iniciarPausarClick);
+        this.botonReiniciar.addEventListener('customClick', this.reiniciarClick);
+
+
+    }
+    iniciarPausarClick(event){
+        if (event.detail.titulo === 'Iniciar') {
+            this.botonIniciarPausar.titulo = 'Pausar';
+            this.intervalo = setInterval(()=>{
+                this.contador++;
+                this.dispatchEvent( new CustomEvent('actualizarTiempo', {
+                    bubbles: true,
+                    detail: {
+                        contador: this.contador
+                    }
+                }))
+                // this.actualizarTiempo();
+
+            },10)
+        }else{
+            clearInterval(this.intervalo);
+            this.botonIniciarPausar.titulo = 'Iniciar';
+
+        }
+        event.stopPropagation()
+
+    }
+    reiniciarClick(event){
+        this.contador = 0 ;
+        this.dispatchEvent( new CustomEvent('actualizarTiempo', {
+            bubbles: true,
+            detail: {
+                contador: this.contador
+
+            }
+
+
+    }))
+    event.stopPropagation();
+}
 }
 
 export default Crono;
